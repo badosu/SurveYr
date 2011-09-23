@@ -17,6 +17,18 @@ group :assets do
   gem 'uglifier'
 end
 
+# Avatar image uploading
+gem 'carrierwave'
+
+# Custom form helper
+gem 'simple_form'
+
+group :test, :development do
+	gem 'rspec-rails'
+	gem 'autotest'
+	gem 'capybara'
+end
+
 gem 'jquery-rails'
 
 # Use unicorn as the web server
