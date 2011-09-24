@@ -1,0 +1,18 @@
+<% flash.each do |key, msg| %>
+    <%= content_tag :div, msg, :class => [key, " message"], :id => "flash_#{key}" %>
+    <%= content_tag :script, :type => "text/javascript" do -%>
+      $('#flash_<%= key %>')
+        .stop(10000)
+        .fadeOut('slow');
+    <% end %>
+<% end %>
+
+<%= simple_form_for @user, :html => {:multipart => true} do |f|%>
+  <%= f.error_notification %>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.input :image, :as => :file %>
+  <%= f.button :submit %>
+<% end %>
