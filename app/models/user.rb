@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
 
   validates :email, :uniqueness => {:case_sensitive => false}, :presence => true, :format => {:with => email_regex}
 
-  validates :password, :presence => true, :length => {:in => 5..25}, :on => :create
+  validates :password, :presence => true, :length => {:in => 6..25}, :on => :create
 
 end

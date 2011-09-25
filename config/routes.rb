@@ -13,6 +13,10 @@ SurveYr::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   resources :users
 
+  match 'login' => 'sessions#new', :via => :get, :as => :login
+  match 'login' => 'sessions#create', :via => :post, :as => :login
+  match 'logout' => 'sessions#destroy', :as => :logout
+
   # Sample resource route with options:
   #   resources :products do
   #     member do

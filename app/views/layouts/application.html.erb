@@ -7,8 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <h1>
+    SurveYr
+  </h1>
 
-<%= yield %>
+  <%= render :partial => "shared/flash", :locals => {:flash => flash} %>
+
+  <%= yield %>
 
 </body>
 </html>
