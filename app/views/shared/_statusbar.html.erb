@@ -1,0 +1,5 @@
+<div class="statusbar">
+  <%= current_user.name %>
+  <%= link_to 'Account', user_path(current_user) %>
+  <%= link_to 'Logout', logout_url %>
+</div>

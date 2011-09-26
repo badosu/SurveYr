@@ -1,0 +1,10 @@
+<h2>
+  Hello <%= @user.name %>!
+</h2>
+
+<%= image_tag @user.image_url if @user.image? %>
+
+<div>
+  <p>What would you like to do?</p>
+  <%= link_to "Create a new questionnaire" %>
+</div>
