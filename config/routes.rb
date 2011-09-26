@@ -1,4 +1,15 @@
 SurveYr::Application.routes.draw do
+
+  match 'login' => 'sessions#new', :via => :get, :as => :login
+  match 'login' => 'sessions#create', :via => :post, :as => :login
+  match 'logout' => 'sessions#destroy', :as => :logout
+
+  resources :users do
+    resources :questionnaires
+  end
+
+  root :to => 'welcome#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -11,11 +22,6 @@ SurveYr::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  resources :users
-
-  match 'login' => 'sessions#new', :via => :get, :as => :login
-  match 'login' => 'sessions#create', :via => :post, :as => :login
-  match 'logout' => 'sessions#destroy', :as => :logout
 
   # Sample resource route with options:
   #   resources :products do
@@ -28,10 +34,11 @@ SurveYr::Application.routes.draw do
   #       get 'sold'
   #     end
   #   end
+  
 
   # Sample resource route with sub-resources:
   #   resources :products do
-  #     resources :comments, :sales
+  #     resources :questionnaires, :sales
   #     resource :seller
   #   end
 
@@ -52,7 +59,6 @@ SurveYr::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 

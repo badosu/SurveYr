@@ -23,6 +23,9 @@ gem 'carrierwave'
 # Custom form helper
 gem 'simple_form'
 
+# Nested models in forms
+#gem 'nested_form', :git => 'git://github.com/ryanb/nested_form.git'
+
 group :test, :development do
 	gem 'rspec-rails'
 	gem 'autotest'

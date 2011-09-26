@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  has_many :questionnaires, :dependent => :destroy
+
   mount_uploader :image, ImageUploader
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

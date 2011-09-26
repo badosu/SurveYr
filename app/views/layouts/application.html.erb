@@ -7,11 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <h1>
-    SurveYr
-  </h1>
+  <h1><%= link_to 'SurveYr', root_url %></h1>
 
-  <%= render :partial => "shared/flash", :locals => {:flash => flash} %>
+  <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
+
+  <%= render 'shared/statusbar' if current_user %>
 
   <%= yield %>
 
