@@ -2,4 +2,5 @@
   <%= current_user.name %>
   <%= link_to 'Account', user_path(current_user) %>
   <%= link_to 'Logout', logout_url %>
+  <%= link_to 'New Survey', new_questionnaire_path(current_user) %>
 </div>

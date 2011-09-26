@@ -2,11 +2,16 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  has_many :questionnaires, :dependent => :destroy
-
   mount_uploader :image, ImageUploader
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  has_many :relationships, :foreign_key => "follower_id", :dependent => :destroy
+  has_many :following, :through => :relationships, :source => :followed
+  has_many :reverse_relationships, :foreign_key => "followed_id", :class_name => "Relationship", :dependent => :destroy
+  has_many :followers, :through => :reverse_relationships, :source => :follower
+
+  has_many :questionnaires, :dependent => :destroy
 
   validates :name, :uniqueness => {:case_sensitive => false}, :presence => true, :length => {:in => 5..15}
 
