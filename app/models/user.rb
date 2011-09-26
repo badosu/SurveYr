@@ -19,4 +19,16 @@ class User < ActiveRecord::Base
 
   validates :password, :presence => true, :length => {:in => 6..25}, :on => :create
 
+  def following?(followed)
+    relationships.find_by_followed_id(followed)
+  end
+
+  def follow!(followed)
+    relationships.create!(:followed_id => followed.id)
+  end
+
+  def unfollow!(followed)
+    relationships.find_by_followed_id(followed).destroy
+  end
+
 end

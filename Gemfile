@@ -30,6 +30,8 @@ group :test, :development do
 	gem 'rspec-rails'
 	gem 'autotest'
 	gem 'capybara'
+	gem 'guard-rspec'
+	gem 'factory_girl_rails'
 end
 
 gem 'jquery-rails'

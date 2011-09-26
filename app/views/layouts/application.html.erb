@@ -9,9 +9,9 @@
 <body>
   <h1><%= link_to 'SurveYr', root_url %></h1>
 
-  <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
+  <%= render 'shared/statusbar' %>
 
-  <%= render 'shared/statusbar' if current_user %>
+  <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
 
   <%= yield %>
 
