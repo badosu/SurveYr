@@ -7,13 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <h1><%= link_to 'SurveYr', root_url %></h1>
-
-  <%= render 'shared/statusbar' %>
-
-  <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
-
-  <%= yield %>
-
+  <div id="container">
+    <h1>
+      <%= link_to 'SurveYr', root_url %>
+    </h1>
+    <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
+    <%= yield %>
+  </div>
 </body>
 </html>

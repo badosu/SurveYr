@@ -1,11 +1,20 @@
 SurveYr::Application.routes.draw do
 
+  get "relationships/follow"
+
+  get "relationships/unfollow"
+
   match 'login' => 'sessions#new', :via => :get, :as => :login
   match 'login' => 'sessions#create', :via => :post, :as => :login
   match 'logout' => 'sessions#destroy', :as => :logout
 
   resources :users do
+    match 'follow' => 'users#follow', :via => :post
+    match 'unfollow' => 'users#unfollow', :via => :post
+
     resources :questionnaires
+    resources :following
+    resources :followers
   end
 
   root :to => 'welcome#index'

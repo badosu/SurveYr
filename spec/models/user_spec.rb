@@ -6,68 +6,68 @@ describe User do
     @user = Factory(:user)
   end
 
-  it "should be invalid when empty" do
-    (User.new).should be_invalid
-  end
+  describe "attributes" do
 
-  it "should be invalid when email has not @" do
-    @user.email = "badosu"
-    @user.should be_invalid
-  end
+    it "should be invalid when empty" do
+      (User.new).should be_invalid
+    end
 
-  it "should be invalid when email has not suffix" do
-    @user.email = "badosu@domain"
-    @user.should be_invalid
-  end
+    it "should be invalid when email has not @" do
+      @user.email = "badosu"
+      @user.should be_invalid
+    end
 
-  it "should be invalid when email has a bad suffix" do
-    @user.email = "badosu@domain.-com"
-    @user.should be_invalid
-  end
+    it "should be invalid when email has not suffix" do
+      @user.email = "badosu@domain"
+      @user.should be_invalid
+    end
 
-  it "should be invalid when email has not a name" do
-    @user.email = "@domain.com"
-    @user.should be_invalid
-  end
+    it "should be invalid when email has a bad suffix" do
+      @user.email = "badosu@domain.-com"
+      @user.should be_invalid
+    end
 
-  it "should reject a duplicate name" do
-    homonymous = Factory(:user)
-    homonymous.name = @user.name
-    homonymous.should be_invalid
-  end
+    it "should be invalid when email has not a name" do
+      @user.email = "@domain.com"
+      @user.should be_invalid
+    end
 
-  it "should reject a duplicate email" do
-    homonymous = Factory(:user)
-    homonymous.name = @user.email
-    homonymous.should be_invalid
-  end
+    it "should reject a duplicate name" do
+      homonymous = Factory(:user)
+      homonymous.name = @user.name
+      homonymous.should be_invalid
+    end
 
-  it "should have a name with 5..15 characters" do
-    @user.name = "heya"
-    @user.should be_invalid
-    @user.name = "reallylooongname"
-    @user.should be_invalid
-    @user.name = "normalname"
-    @user.should be_valid
-  end
+    it "should reject a duplicate email" do
+      homonymous = Factory(:user)
+      homonymous.name = @user.email
+      homonymous.should be_invalid
+    end
 
-  it "should create a new instance given valid attributes" do
-    @user.save!
-  end
+    it "should have a name with 5..15 characters" do
+      @user.name = "heya"
+      @user.should be_invalid
+      @user.name = "reallylooongname"
+      @user.should be_invalid
+      @user.name = "normalname"
+      @user.should be_valid
+    end
 
-  it "should reject duplicate users" do
-    duplicated_user = User.new(@user.attributes)
-    duplicated_user.should be_invalid
+    it "should create a new instance given valid attributes" do
+      @user.save!
+    end
+
+    it "should reject duplicate users" do
+      duplicated_user = User.new(@user.attributes)
+      duplicated_user.should be_invalid
+    end
+
   end
 
   describe "relationships" do
 
     before :each do
       @followed = Factory(:user)
-    end
-
-    it "should have a relationships method" do
-      @user.should respond_to(:relationships)
     end
 
     it "should have a relationships method" do
@@ -117,6 +117,14 @@ describe User do
     it "should include the follower in the followers array" do
       @user.follow!(@followed)
       @followed.followers.should include(@user)
+    end
+
+  end
+
+  describe "questionnaires" do
+
+    it "should have a questionnaires method" do
+      @user.should respond_to(:questionnaires)
     end
 
   end

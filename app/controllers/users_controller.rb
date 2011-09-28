@@ -6,19 +6,44 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new params[:user]
-    if @user.save
-      session[:user_id] = @user.id
-      flash[:notice] = "Signed up!" 
-      redirect_to @user
-    else
-      render :new
-    end
+    render :new unless @user.save
+    session[:user_id] = @user.id
+
+    redirect_to @user
   end
 
   def show
-    @user = current_user
+    @user = User.find_by_id params[:id]
+  end
 
-    redirect_to "sessions#new" unless @user
+  def index
+    @users = User.all
+  end
+
+  def edit 
+    redirect_to root_url unless current_user
+    redirect_to :user unless params[:id].to_i == current_user.id
+  end
+
+  def update
+    @user = current_user
+    @user.attributes = params[:user]
+
+    render :edit unless @user.save
+
+    session[:user_id] = @user.id
+
+    redirect_to root_url
+  end
+
+  def follow
+    current_user.follow! params[:user_id]
+    render :nothing => :true
+  end
+
+  def unfollow
+    current_user.unfollow! params[:user_id]
+    render :nothing => :true
   end
 
 end
