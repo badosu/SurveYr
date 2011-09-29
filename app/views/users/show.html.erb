@@ -1,16 +1,18 @@
 <% title @user.name %>
 
-<%= image_tag @user.image_url %>
+<div class="avatar-container">
+  <%= image_tag @user.image_url, :class => 'user-avatar' %>
 
-<div>
-  <h2>Latest Surveys</h2>
-  <ul>
-    <% @questionnaires.each do |questionnaire| %>
-      <li>
-        <%= link_to questionnaire.name, questionnaire_path(questionnaire) %>
-      </li>
-    <% end %>
-  </ul>
+  <div class="latest">
+    <h2>Latest Surveys</h2>
+    <ul>
+      <% @questionnaires.each do |questionnaire| %>
+        <li>
+          <%= link_to questionnaire.name, questionnaire_path(questionnaire) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
 
 <% content_for :sidebar do %>

@@ -5,6 +5,7 @@
   <ul>
     <% @latest_questionnaires.each do |questionnaire| %>
       <li>
+        <%= link_to questionnaire.user.name, questionnaire.user %> - 
         <%= link_to questionnaire.name, questionnaire_path(questionnaire) %>
       </li>
     <% end %>
@@ -24,6 +25,8 @@
 </div>
 
 <% content_for :sidebar do %>
+  <h2><%= current_user.name %></h2>
+  <%= image_tag current_user.image_url, :class => 'avatar' %> 
   <div>
     <h3>Watching <small><a href="<%= user_following_index_path current_user %>"><%= current_user.following.count %></a></small> 
     </h3>

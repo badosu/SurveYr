@@ -2,10 +2,10 @@
 <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
 <%= simple_form_for current_user, :html => {:multipart => true} do |f|%>
   <%= f.error_notification %>
-  <%= f.input :name %>
-  <%= f.input :email %>
-  <%= f.input :password %>
-  <%= f.input :password_confirmation %>
+  <%= f.input :name, :label => false, :placeholder => 'Username' %>
+  <%= f.input :email, :label => false, :placeholder => 'Email' %>
+  <%= f.input :password, :label => false, :placeholder => 'Password' %>
+  <%= f.input :password_confirmation, :label => false, :placeholder => 'Password confirmation' %>
   <%= f.input :image, :as => :file %>
   <%= f.button :submit %>
 <% end %>

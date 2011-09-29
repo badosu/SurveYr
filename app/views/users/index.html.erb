@@ -1,8 +1,8 @@
 <% title 'Users' %>
-<ul>
+<ul class="media-grid">
   <% @users.each do |user| %>
   <li>
-    <%= image_tag user.image_url %> 
+    <%= image_tag user.image_url, :class => 'thumbnail' %> 
     <%= link_to user.name, user_path(user) %>
   </li>
   <% end %>
