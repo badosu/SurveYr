@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     render :new unless @user.save
     session[:user_id] = @user.id
 
-    redirect_to @user
+    redirect_to root_url
   end
 
   def show
