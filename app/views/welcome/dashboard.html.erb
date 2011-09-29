@@ -1,13 +1,51 @@
-<h2>Dashboard</h2>
+<% title 'Dashboard' %>
 
 <div>
-  <%= link_to current_user.name, edit_user_path(current_user) %>
-  <%= link_to "new Survey", new_user_questionnaire_path(current_user) %>
-  <%= link_to 'Logout', logout_url %>
+  <h2>Latest Surveys</h2>
+  <ul>
+    <% @latest_questionnaires.each do |questionnaire| %>
+      <li>
+        <%= link_to questionnaire.name, questionnaire_path(questionnaire) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <h2>Your Surveys</h2>
+  <ul>
+    <% @questionnaires.each do |questionnaire| %>
+      <li>
+        <%= link_to questionnaire.name, questionnaire_path(questionnaire) %>
+        <% unless questionnaire.is_public %>
+          <small>private</small>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>
 
-<div>
-</div>
+<% content_for :sidebar do %>
+  <div>
+    <h3>Watching <small><a href="<%= user_following_index_path current_user %>"><%= current_user.following.count %></a></small> 
+    </h3>
+    <ul class="media-grid">
+      <% current_user.following.each do |user| %>
+        <li>
+          <%= image_tag user.image_url, :class => 'thumbnail' %> 
+          <%= link_to user.name, user_path(user) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
-<div>
-</div>
+  <div>
+    <h3>Watchers <small><a href="<%= user_followers_path current_user %>"><%= current_user.followers.count %></a></small></h3>
+    <ul class="media-grid">
+      <% current_user.followers.each do |user| %>
+        <li>
+          <%= image_tag user.image_url, :class => 'thumbnail' %> 
+          <%= link_to user.name, user_path(user) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

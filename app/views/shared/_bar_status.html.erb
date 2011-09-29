@@ -1,0 +1,9 @@
+<% if current_user %>
+  <%= link_to current_user.name, edit_user_path(current_user), :class => 'btn' %>
+  <%= link_to "Surveys", questionnaires_path, :class => 'btn' %>
+  <%= link_to "Users", users_path, :class => 'btn' %>
+  <%= link_to 'Logout', logout_url, :class => 'btn' %>
+<% else %>
+  <%= link_to 'Login', login_url, :class => 'btn' %>
+  <%= link_to 'Sign up!', new_user_path, :class => 'btn' %>
+<% end %>

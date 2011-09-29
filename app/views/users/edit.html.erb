@@ -1,5 +1,5 @@
-<h2>Edit account</h2>
-
+<% title 'Edit account' %>
+<%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
 <%= simple_form_for current_user, :html => {:multipart => true} do |f|%>
   <%= f.error_notification %>
   <%= f.input :name %>

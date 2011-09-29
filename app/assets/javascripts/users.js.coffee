@@ -1,23 +1,22 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-#
-
 $ ->
-  $('.follow_user').bind 'ajax:success', followed_user $(this)
+  do bind_callbacks
 
-  $('.unfollow_user').bind 'ajax:success', unfollowed_user $(this)
+bind_callbacks = ->
+  $('.unfollow_user').bind 'ajax:success', unfollow_callback
+  $('.follow_user').bind 'ajax:success', follow_callback
 
-  followed_user = element ->
-    -> element.removeClass('.follow_user')
-              .addClass('.unfollow_user')
-              .unbind()
-              .bind('ajax:success', unfollowed_user)
-              .text('unfollow')
+unfollow_callback =  ->
+  $('.unfollow_user').removeClass('unfollow_user')
+                     .addClass('follow_user')
+                     .unbind()
+                     .attr('data-method','put')
+                     .text('watch')
+  do bind_callbacks
 
-  unfollowed_user = element ->
-    -> element.removeClass('.follow_user')
-              .addClass('.unfollow_user')
-              .unbind()
-              .bind('ajax:success', unfollowed_user)
-              .text('unfollow')
+follow_callback =  ->
+  $('.follow_user').removeClass('follow_user')
+                   .addClass('unfollow_user')
+                   .unbind()
+                   .attr('data-method','delete')
+                   .text('watching')
+  do bind_callbacks

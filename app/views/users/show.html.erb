@@ -1,12 +1,25 @@
-<h2><%= @user.name %></h2>
+<% title @user.name %>
 
 <%= image_tag @user.image_url %>
 
-<a href="<%= user_following_path @user %>">watching <%= @user.following.count %></a>
-<a href="<%= user_followers_path @user %>"><%= pluralize @user.following.count, "watcher" %></a>
+<div>
+  <h2>Latest Surveys</h2>
+  <ul>
+    <% @questionnaires.each do |questionnaire| %>
+      <li>
+        <%= link_to questionnaire.name, questionnaire_path(questionnaire) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
-<% if current_user.following?(@user) %>
-  <%= link_to "stop watching", user_unfollow_path(@user), :method => :post, :remote => true, :class => 'unwatch_user' %>
-<% else %>
-  <%= link_to "watch", user_follow_path(@user), :method => :post, :remote => true, :class => 'watch_user' %>
+<% content_for :sidebar do %>
+  <p><a href="<%= @user %>">Watching: <%= @user.following.count %></a></p>
+  <p><a href="<%= @user %>"><%= pluralize @user.following.count, "watcher" %></a></p>
+
+  <% if current_user.following?(@user) %>
+    <%= link_to "watching", user_follow_path(@user), :method => :delete, :remote => true, :class => 'unfollow_user btn' %>
+  <% else %>
+    <%= link_to "watch", user_follow_path(@user), :method => :put, :remote => true, :class => 'follow_user btn' %>
+  <% end %>
 <% end %>

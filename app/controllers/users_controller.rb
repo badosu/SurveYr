@@ -13,7 +13,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    redirect_to root_url if current_user.id == params[:id].to_i
+
     @user = User.find_by_id params[:id]
+    @questionnaires = @user.questionnaires.where(:is_public => true)
   end
 
   def index
@@ -37,13 +40,13 @@ class UsersController < ApplicationController
   end
 
   def follow
-    current_user.follow! params[:user_id]
-    render :nothing => :true
+    current_user.follow! User.find(params[:user_id])
+    render 'follow.js.coffee.erb', :layout => false if request.xhr?
   end
 
   def unfollow
-    current_user.unfollow! params[:user_id]
-    render :nothing => :true
+    current_user.unfollow! User.find(params[:user_id])
+    render 'unfollow.js.coffee.erb', :layout => false if request.xhr?
   end
 
 end

@@ -1,4 +1,7 @@
-<h2>Welcome to Surveyor!</h2>
-<nav>
-  <%= link_to 'Login', login_url %> or <%= link_to 'Sign up!', new_user_path %>
-</nav>
+<% title "Welcome to Surveyor" %>
+<h2>Please <%= link_to 'Login', login_url %> or <%= link_to 'Sign up!', new_user_path %></h2>
+<%= form_tag login_path do %>
+  <%= text_field_tag :name, params[:name], :placeholder => 'Username' %>
+  <%= password_field_tag :password %>
+  <%= submit_tag "Login" %>
+<% end %>

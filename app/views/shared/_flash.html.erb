@@ -1,5 +1,5 @@
 <% flash.each do |key, msg| %>
-    <%= content_tag :div, msg, :class => [key, " message"], :id => "flash_#{key}" %>
+    <%= content_tag :div, msg, :class => [key, " alert-message block-message warning"], :id => "flash_#{key}" %>
     <%= content_tag :script, :type => "text/javascript" do -%>
       setTimeout(function(){
         $('#flash_<%= key %>').fadeOut('slow');

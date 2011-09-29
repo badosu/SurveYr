@@ -1,0 +1,17 @@
+<p>
+  <strong>Name:</strong>
+  <%=h @questionnaire.name %>
+</p>
+
+<ol>
+<% for question in @questionnaire.questions %>
+  <li>
+    <%= question.question %>
+    <ul>
+    <% for answer in question.answers %>
+      <li><%= answer.answer %></li>
+    <% end %>
+    </ul>
+  </li>
+<% end %>
+</ol>

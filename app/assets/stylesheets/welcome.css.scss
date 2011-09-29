@@ -1,3 +1,17 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+img.thumbnail{
+  width:50px;
+  height:50px;
+  display:block;
+}
+.media-grid{
+  li{
+    float:left;
+    margin:5px;
+  }
+  a{
+    margin:2px;
+  }
+}

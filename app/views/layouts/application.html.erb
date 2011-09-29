@@ -1,18 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SurveYr</title>
+  <title><%= content_for?(:title) ? yield(:title) : "SurveYr" %></title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="container">
-    <h1>
-      <%= link_to 'SurveYr', root_url %>
-    </h1>
-    <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
-    <%= yield %>
+  <div class="topbar">
+    <div class="fill">
+      <div class="container">
+        <a href="<%= root_url %>" class="brand">SurveYr</a>
+        <ul class="nav">
+           <li class="active"><a href="<%= root_url %>">Home</a></li>
+           <li><a href="#about">About</a></li>
+           <li><a href="#contact">Contact</a></li>
+        </ul>
+        <form class="pull-right" action="">
+          <%= render "shared/bar_status" %>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="content">
+      <div class="page-header">
+        <h1><%= content_for?(:title) ? yield(:title) : "SurveYr" %></h1>
+      </div>
+      <div class="row">
+        <div class="span10">
+          <%= yield %>
+        </div>
+        <div class="span4">
+          <h2>SurveYr's Sidebar</h2>
+          <%=h yield(:sidebar) %>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; SurveYr</p>
+    </footer>
+
+    </div>
   </div>
 </body>
 </html>

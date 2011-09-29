@@ -1,16 +1,15 @@
-<% unless @questionnaires.empty? %>
-  <h2>List of <%= @user.name %> questionnaires</h2>
-  <table>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for questionnaire in @questionnaires %>
     <tr>
-      <th>Name</th>
+      <td><%= questionnaire.name %></td>
+      <td><%= link_to "Show", questionnaire %></td>
+      <td><%= link_to "Edit", edit_questionnaire_path(questionnaire) %></td>
+      <td><%= link_to "Delete", questionnaire, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
-    <% for questionnaire in @questionnaires %>
-      <tr>
-        <td><%=h questionnaire.name %></td>
-        <td><%= link_to "Show", questionnaire %></td>
-      </tr>
-    <% end %>
-  </table>
-<% else %>
-  <p><%= @user.name %> has no questionnaires</p>
-<% end %>
+  <% end %>
+</table>
+
+<p><%= link_to "New Survey", new_questionnaire_path %></p>

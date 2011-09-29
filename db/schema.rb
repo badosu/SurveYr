@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926205349) do
+ActiveRecord::Schema.define(:version => 20110928233700) do
 
   create_table "answers", :force => true do |t|
     t.string   "answer"
@@ -23,14 +23,12 @@ ActiveRecord::Schema.define(:version => 20110926205349) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_published", :default => false
-    t.boolean  "is_public",    :default => false
+    t.boolean  "is_public",  :default => false
     t.integer  "user_id"
   end
 
   create_table "questions", :force => true do |t|
     t.string   "question"
-    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "questionnaire_id"

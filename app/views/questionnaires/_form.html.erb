@@ -1,0 +1,11 @@
+<%= simple_form_for @questionnaire do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :name, :label => false, :placeholder => "Survey name", :class => "small_field" %>
+  <%= f.input :is_public, :label => "Public" %>
+  </br>
+  <%= f.simple_fields_for :questions do |builder| %>
+    <%= render "question_fields", :f => builder %>
+  <% end %>
+  <%= link_to_add_fields "Add Question", f, :questions, :class => 'btn' %>
+  <%= f.button :submit %>
+<% end %>

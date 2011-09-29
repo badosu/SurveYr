@@ -1,6 +1,5 @@
-<h2>
-  Sign Up!
-</h2>
+<% title 'Sign up' %>
+<%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
 
 <%= simple_form_for @user, :html => {:multipart => true} do |f|%>
   <%= f.error_notification %>
