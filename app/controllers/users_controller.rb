@@ -42,12 +42,10 @@ class UsersController < ApplicationController
 
   def follow
     current_user.follow! User.find(params[:user_id])
-    render 'follow.js.coffee.erb', :layout => false if request.xhr?
   end
 
   def unfollow
     current_user.unfollow! User.find(params[:user_id])
-    render 'unfollow.js.coffee.erb', :layout => false if request.xhr?
   end
 
 end

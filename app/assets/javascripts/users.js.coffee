@@ -1,3 +1,4 @@
+###
 $ ->
   do bind_callbacks
 
@@ -20,3 +21,4 @@ follow_callback =  ->
                    .attr('data-method','delete')
                    .text('watching')
   do bind_callbacks
+###
