@@ -1,15 +1,7 @@
 <% title 'Sign In' %>
 <%= render :partial => 'shared/flash', :locals => { :flash => flash } %>
 <%= form_tag login_path do %> 
-  <div class="field">
-    <%= label_tag :name %>
-    <%= text_field_tag :name, params[:name] %>
-  </div>
-  <div class="field">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
-  <div class="actions">
-    <%= submit_tag "Login" %>
-  </div>
+  <%= text_field_tag :name, params[:name], :placeholder => "Username" %>
+  <%= password_field_tag :password %>
+  <%= submit_tag "Login" %>
 <% end %>

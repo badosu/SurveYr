@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   end
 
   def edit 
+    @user = current_user
     redirect_to root_url unless current_user
     redirect_to :user unless params[:id].to_i == current_user.id
   end

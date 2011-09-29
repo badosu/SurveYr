@@ -1,5 +1,5 @@
 window.remove_fields = (link) ->
-  $(link).prev("input[type=hidden]").value = "1"
+  $(link).prev("input[type=hidden]").val true
   do $(link).parent().hide
 
 window.add_fields = (link, association, content) ->

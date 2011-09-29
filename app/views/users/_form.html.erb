@@ -1,0 +1,9 @@
+<%= simple_form_for @user, :html => {:multipart => true} do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :name, :label => false, :placeholder => 'username' %>
+  <%= f.input :email, :label => false, :placeholder => 'email' %>
+  <%= f.input :password, :label => false, :placeholder => 'password' %>
+  <%= f.input :password_confirmation, :label => false, :placeholder => 'password confirmation' %>
+  <%= f.input :image, :as => :file %>
+  <%= f.button :submit %>
+<% end %>
