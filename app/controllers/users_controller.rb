@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     redirect_to root_url if current_user.id == params[:id].to_i
 
     @user = User.find_by_id params[:id]
-    @questionnaires = @user.questionnaires.where(:is_public => true)
+    @questionnaires = @user.questionnaires.published
   end
 
   def index

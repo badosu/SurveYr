@@ -3,8 +3,9 @@ class WelcomeController < ApplicationController
   def index
     return unless current_user
 
-    @latest_questionnaires = Questionnaire.where(:is_public=>true).joins(:followed_users).where('relationships.follower_id = ?', current_user.id)
-    @questionnaires = Questionnaire.where(:user_id => current_user.id)
+    @latest_questionnaires = Questionnaire.watched_by current_user
+    @questionnaires = Questionnaire.created_by current_user
+
     render :dashboard
   end
 
