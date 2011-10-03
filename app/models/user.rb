@@ -30,4 +30,5 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(followed).destroy
   end
 
+  has_many :answer_forms, :dependent => :destroy
 end

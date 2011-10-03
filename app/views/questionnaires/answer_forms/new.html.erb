@@ -1,0 +1,11 @@
+<%= simple_form_for [@answer_form.questionnaire, @answer_form] do |f| %>
+  <ul>
+    <% for question in @answer_form.questionnaire.questions %>
+          <%= question.question %>
+          <%= f.association :answers, :collection => question.answer_fields.map{|a| Answer.new({:answer_field_id => a.id, :answer_form => @answer_form}) }, :as => :radio %>
+    <% end %>
+  </ul>
+  <%= f.button :submit %>
+<% end %>
+
+          <!-- %= f.association :answers, :collection => question.answer_fields.map{|a| Answer.new({:answer_field => a, :answer_form => @answer_form}) }, :as => :radio, :label => :answer_field % -->

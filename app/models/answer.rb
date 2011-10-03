@@ -1,3 +1,4 @@
 class Answer < ActiveRecord::Base
-  belongs_to :question
+  belongs_to :answer_form
+  belongs_to :answer_field
 end

@@ -1,0 +1,12 @@
+<h2><%= @user.name %> Surveys</h2>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for questionnaire in @questionnaires %>
+    <tr>
+      <td><%= questionnaire.name %></td>
+      <td><%= link_to "Answer", new_questionnaire_answer_form_path(questionnaire) %></td>
+    </tr>
+  <% end %>
+</table>

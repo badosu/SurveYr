@@ -1,6 +1,6 @@
 class QuestionnairesController < ApplicationController
   def index
-    @questionnaires = Questionnaire.where :user_id => current_user.id
+    @questionnaires = Questionnaire.created_by current_user
   end
   
   def show
@@ -11,19 +11,19 @@ class QuestionnairesController < ApplicationController
     @questionnaire = Questionnaire.new
     2.times do
       question = @questionnaire.questions.build
-      2.times { question.answers.build }
+      2.times { question.answer_fields.build }
     end
   end
   
   def create
     @questionnaire = Questionnaire.new params[:questionnaire]
     @questionnaire.user = current_user
-    if @questionnaire.save
-      flash[:notice] = "Successfully created survey."
-      redirect_to @questionnaire
-    else
-      render :new
-    end
+
+    render :new unless @questionnaire.save
+
+    flash[:notice] = "Successfully created survey."
+    redirect_to @questionnaire
+      
   end
   
   def edit
@@ -32,18 +32,18 @@ class QuestionnairesController < ApplicationController
   
   def update
     @questionnaire = Questionnaire.find(params[:id])
-    if @questionnaire.update_attributes params[:questionnaire]
-      flash[:notice] = "Successfully updated survey."
-      redirect_to @questionnaire
-    else
-      render :action => 'edit'
-    end
+
+    render :action => 'edit' unless @questionnaire.update_attributes params[:questionnaire]
+
+    flash[:notice] = "Successfully updated survey."
+    redirect_to @questionnaire
+      
   end
   
   def destroy
     @questionnaire = Questionnaire.find(params[:id])
     @questionnaire.destroy
-    flash[:notice] = "Successfully destroyed survey."
+    flash[:notice] = "Successfully removed survey."
     redirect_to questionnaires_url
   end
 end

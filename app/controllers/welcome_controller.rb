@@ -5,6 +5,7 @@ class WelcomeController < ApplicationController
 
     @latest_questionnaires = Questionnaire.watched_by current_user
     @questionnaires = Questionnaire.created_by current_user
+    @latest_answers = AnswerForm.all
 
     render :dashboard
   end

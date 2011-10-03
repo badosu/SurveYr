@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @user = current_user
     @user.attributes = params[:user]
 
-    render :edit and return unless @user.save
+    render :edit unless @user.save
 
     session[:user_id] = @user.id
 

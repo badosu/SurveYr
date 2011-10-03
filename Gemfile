@@ -31,6 +31,8 @@ group :test, :development do
 	gem 'autotest'
 	gem 'capybara'
 	gem 'guard-rspec'
+  gem 'rb-inotify'
+	gem 'libnotify'
 	gem 'factory_girl_rails'
 end
 

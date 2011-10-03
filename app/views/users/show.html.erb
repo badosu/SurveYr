@@ -8,7 +8,9 @@
     <ul>
       <% @questionnaires.each do |questionnaire| %>
         <li>
-          <%= link_to questionnaire.name, questionnaire_path(questionnaire) %>
+          <%= link_to questionnaire.name, questionnaire_path(questionnaire) %> 
+           --
+          <%= link_to "answer", new_questionnaire_answer_form_path(questionnaire) %>
         </li>
       <% end %>
     </ul>
@@ -16,6 +18,7 @@
 </div>
 
 <% content_for :sidebar do %>
+  <p><%= link_to "All #{@user.name}'s surveys", user_questionnaires_path(@user) %></p>
   <p><a href="<%= @user %>">Watching: <%= @user.following.count %></a></p>
   <p><a href="<%= @user %>"><%= pluralize @user.following.count, "watcher" %></a></p>
 

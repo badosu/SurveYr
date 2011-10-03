@@ -1,8 +1,18 @@
 <% title 'Dashboard' %>
 
 <div>
+  <h2>Latest Answers</h2>
+  <ul class="latest-answers">
+    <% @latest_answers.each do |answer_form| %>
+      <li>
+        <%= link_to answer_form.user.name, answer_form.user %> - 
+        <%= link_to answer_form.questionnaire.name, answer_form_path(answer_form)%>
+      </li>
+    <% end %>
+  </ul>
+
   <h2>Latest Surveys</h2>
-  <ul>
+  <ul class="latest-surveys">
     <% @latest_questionnaires.each do |questionnaire| %>
       <li>
         <%= link_to questionnaire.user.name, questionnaire.user %> - 
@@ -12,7 +22,7 @@
   </ul>
 
   <h2>Your Surveys</h2>
-  <ul>
+  <ul class="surveys">
     <% @questionnaires.each do |questionnaire| %>
       <li>
         <%= link_to questionnaire.name, questionnaire_path(questionnaire) %>
@@ -30,7 +40,7 @@
   <div>
     <h3>Watching <small><a href="<%= user_following_index_path current_user %>"><%= current_user.following.count %></a></small> 
     </h3>
-    <ul class="media-grid">
+    <ul class="media-grid watching">
       <% current_user.following.each do |user| %>
         <li>
           <%= image_tag user.image_url, :class => 'thumbnail' %> 
@@ -42,7 +52,7 @@
 
   <div>
     <h3>Watchers <small><a href="<%= user_followers_path current_user %>"><%= current_user.followers.count %></a></small></h3>
-    <ul class="media-grid">
+    <ul class="media-grid watchers">
       <% current_user.followers.each do |user| %>
         <li>
           <%= image_tag user.image_url, :class => 'thumbnail' %> 

@@ -8,8 +8,8 @@
   <li>
     <%= question.question %>
     <ul>
-    <% for answer in question.answers %>
-      <li><%= answer.answer %></li>
+    <% for answer_field in question.answer_fields %>
+      <li><%= answer_field.answer %></li>
     <% end %>
     </ul>
   </li>
